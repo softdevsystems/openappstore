@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b57d0">
+  <meta name="description" content="A responsive community Android app catalog hosted on GitHub Pages.">
+  <title>OpenApp Store</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="OpenApp Store home">
+      <img src="assets/logo.svg" alt="" width="38" height="38">
+      <span>OpenApp Store</span>
+    </a>
+
+    <form class="search" id="searchForm" role="search">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 20-4.3-4.3a8 8 0 1 0-1 1L20 21l1-1ZM5 11a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z"/></svg>
+      <input id="searchInput" type="search" placeholder="Search apps and developers" autocomplete="off" aria-label="Search apps">
+      <button class="clear-search" id="clearSearch" type="button" aria-label="Clear search">×</button>
+    </form>
+
+    <a class="submit-button" href="submit.html">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M11 4h2v7h7v2h-7v7h-2v-7H4v-2h7V4Z"/></svg>
+      <span>Submit app</span>
+    </a>
+  </header>
+
+  <div class="page-shell">
+    <aside class="sidebar" aria-label="App categories">
+      <nav id="categoryNav">
+        <button class="nav-item active" data-category="All">
+          <span class="nav-icon">⌂</span><span>Home</span>
+        </button>
+        <button class="nav-item" data-category="Productivity"><span class="nav-icon">✓</span><span>Productivity</span></button>
+        <button class="nav-item" data-category="Education"><span class="nav-icon">▣</span><span>Education</span></button>
+        <button class="nav-item" data-category="Business"><span class="nav-icon">▤</span><span>Business</span></button>
+        <button class="nav-item" data-category="Tools"><span class="nav-icon">⚙</span><span>Tools</span></button>
+        <button class="nav-item" data-category="Games"><span class="nav-icon">◇</span><span>Games</span></button>
+      </nav>
+
+      <div class="sidebar-note">
+        <strong>Community powered</strong>
+        <p>Apps are submitted through GitHub and reviewed before publication.</p>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <span class="eyebrow">OPEN-SOURCE AND COMMUNITY APPS</span>
+          <h1 id="heroTitle">Discover Android apps shared by creators.</h1>
+          <p>Browse app details, check versions, and download APK files directly from verified GitHub sources.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#apps">Explore apps</a>
+            <a class="secondary-button" href="submit.html">Publish your app</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="phone-card">
+            <div class="phone-top"></div>
+            <div class="mini-app-row"><span class="mini-icon one"></span><span></span></div>
+            <div class="mini-app-row"><span class="mini-icon two"></span><span></span></div>
+            <div class="mini-app-row"><span class="mini-icon three"></span><span></span></div>
+            <div class="mini-button"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured-section" id="featuredSection" aria-labelledby="featuredTitle">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Editor's choice</span>
+            <h2 id="featuredTitle">Featured apps</h2>
+          </div>
+          <button class="text-button" id="showAllFeatured" type="button">View all</button>
+        </div>
+        <div class="featured-grid" id="featuredGrid"></div>
+      </section>
+
+      <section class="apps-section" id="apps" aria-labelledby="appsTitle">
+        <div class="section-heading apps-heading">
+          <div>
+            <span class="section-kicker" id="resultLabel">All categories</span>
+            <h2 id="appsTitle">Popular apps</h2>
+          </div>
+          <label class="sort-control">
+            <span>Sort</span>
+            <select id="sortSelect" aria-label="Sort apps">
+              <option value="popular">Most popular</option>
+              <option value="newest">Newest update</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="chip-row" id="mobileCategoryChips" aria-label="Filter categories"></div>
+        <div class="app-grid" id="appGrid"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-icon">⌕</div>
+          <h3>No apps found</h3>
+          <p>Try another search term or category.</p>
+          <button class="secondary-button" id="resetFilters" type="button">Reset filters</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div>
+      <a class="brand footer-brand" href="index.html"><img src="assets/logo.svg" alt="" width="32" height="32"><span>OpenApp Store</span></a>
+      <p>A responsive GitHub Pages template for sharing community Android applications.</p>
+    </div>
+    <div class="footer-links">
+      <a href="submit.html">Submit an app</a>
+      <a href="CONTRIBUTING.md">Contribution guide</a>
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a class="active" href="index.html"><span>⌂</span><small>Home</small></a>
+    <a href="#apps"><span>⌕</span><small>Browse</small></a>
+    <a href="submit.html"><span>＋</span><small>Submit</small></a>
+  </nav>
+
+  <div class="modal" id="appModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalAppName">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-panel">
+      <button class="modal-close" type="button" data-close-modal aria-label="Close app details">×</button>
+      <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <template id="appCardTemplate">
+    <article class="app-card">
+      <button class="app-card-button" type="button">
+        <img class="app-icon" alt="" width="76" height="76">
+        <div class="app-card-body">
+          <h3 class="app-name"></h3>
+          <p class="app-developer"></p>
+          <div class="app-meta"><span class="app-rating"></span><span aria-hidden="true">•</span><span class="app-size"></span></div>
+          <p class="app-description"></p>
+          <div class="app-card-footer"><span class="category-badge"></span><span class="version-label"></span></div>
+        </div>
+      </button>
+    </article>
+  </template>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b57d0">
+  <meta name="description" content="Prepare an Android app submission for OpenApp Store.">
+  <title>Submit an App · OpenApp Store</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="submit-page">
+  <header class="topbar simple-topbar">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.svg" alt="" width="38" height="38">
+      <span>OpenApp Store</span>
+    </a>
+    <a class="secondary-button compact-button" href="index.html">Back to store</a>
+  </header>
+
+  <main class="submit-shell">
+    <section class="submit-intro">
+      <span class="eyebrow">CONTRIBUTOR PORTAL</span>
+      <h1>Prepare your app submission</h1>
+      <p>Enter the app information below. This page creates the metadata file and GitHub submission content needed by the store.</p>
+      <div class="static-warning">
+        <strong>GitHub Pages is a static host.</strong>
+        <span>The form can preview files and prepare your submission, but the APK and icon must be uploaded to the GitHub repository or a GitHub Release.</span>
+      </div>
+    </section>
+
+    <div class="submit-layout">
+      <form class="submission-form" id="submissionForm">
+        <div class="form-section">
+          <div class="form-section-heading">
+            <span class="step-number">1</span>
+            <div><h2>App information</h2><p>Details shown publicly in the catalog.</p></div>
+          </div>
+
+          <div class="field-grid">
+            <label class="field full-field">
+              <span>App name *</span>
+              <input id="appName" name="appName" required maxlength="60" placeholder="Example: My Community App">
+            </label>
+            <label class="field">
+              <span>Developer *</span>
+              <input id="developer" name="developer" required maxlength="60" placeholder="Developer or organization">
+            </label>
+            <label class="field">
+              <span>Version *</span>
+              <input id="version" name="version" required maxlength="30" placeholder="1.0.0">
+            </label>
+            <label class="field">
+              <span>Category *</span>
+              <select id="category" name="category" required>
+                <option value="">Select category</option>
+                <option>Productivity</option>
+                <option>Education</option>
+                <option>Business</option>
+                <option>Tools</option>
+                <option>Games</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Package name</span>
+              <input id="packageName" name="packageName" maxlength="100" placeholder="com.example.app">
+            </label>
+            <label class="field full-field">
+              <span>Description *</span>
+              <textarea id="description" name="description" required maxlength="500" rows="5" placeholder="Describe the app's main purpose and features."></textarea>
+              <small><span id="descriptionCount">0</span>/500 characters</small>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-heading">
+            <span class="step-number">2</span>
+            <div><h2>Files and links</h2><p>Select files for preview, then provide their final GitHub URLs.</p></div>
+          </div>
+
+          <div class="upload-grid">
+            <label class="upload-box" id="iconDropzone">
+              <input id="iconFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+              <span class="upload-symbol">▧</span>
+              <strong>Select app icon</strong>
+              <small>PNG, JPG, WEBP, or SVG</small>
+              <em id="iconFileName">No file selected</em>
+            </label>
+            <label class="upload-box" id="apkDropzone">
+              <input id="apkFile" type="file" accept=".apk,application/vnd.android.package-archive">
+              <span class="upload-symbol">⇧</span>
+              <strong>Select APK file</strong>
+              <small>Used only for local validation</small>
+              <em id="apkFileName">No file selected</em>
+            </label>
+          </div>
+
+          <div class="field-grid top-gap">
+            <label class="field full-field">
+              <span>Icon URL or repository path *</span>
+              <input id="iconUrl" name="iconUrl" required placeholder="assets/icons/my-app.png">
+            </label>
+            <label class="field full-field">
+              <span>APK download URL *</span>
+              <input id="apkUrl" name="apkUrl" type="url" required placeholder="https://github.com/USER/REPO/releases/download/v1.0.0/app.apk">
+            </label>
+            <label class="field full-field">
+              <span>Source code URL</span>
+              <input id="sourceUrl" name="sourceUrl" type="url" placeholder="https://github.com/USER/APP-REPOSITORY">
+            </label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-heading">
+            <span class="step-number">3</span>
+            <div><h2>Submit to GitHub</h2><p>Generate the metadata and open the repository submission page.</p></div>
+          </div>
+          <label class="checkbox-field">
+            <input id="confirmOwnership" type="checkbox" required>
+            <span>I own this app or have permission to distribute its APK file.</span>
+          </label>
+          <label class="checkbox-field">
+            <input id="confirmSafety" type="checkbox" required>
+            <span>I confirm the APK does not contain malware or unauthorized copyrighted content.</span>
+          </label>
+          <div class="submit-actions">
+            <button class="primary-button button-element" type="submit">Generate submission</button>
+            <button class="secondary-button button-element" type="reset">Clear form</button>
+          </div>
+        </div>
+      </form>
+
+      <aside class="preview-column">
+        <div class="preview-card sticky-card">
+          <span class="section-kicker">Live preview</span>
+          <div class="preview-app-header">
+            <div class="preview-icon-wrap"><img id="previewIcon" src="assets/icons/default-app.svg" alt="App icon preview"></div>
+            <div>
+              <h2 id="previewName">Your app name</h2>
+              <p id="previewDeveloper">Developer name</p>
+              <span class="category-badge" id="previewCategory">Category</span>
+            </div>
+          </div>
+          <div class="preview-stats">
+            <div><strong id="previewVersion">1.0.0</strong><span>Version</span></div>
+            <div><strong>APK</strong><span>Android</span></div>
+            <div><strong id="previewSize">—</strong><span>File size</span></div>
+          </div>
+          <p id="previewDescription">Your app description will appear here.</p>
+          <button class="install-preview" type="button" disabled>Download APK</button>
+        </div>
+
+        <div class="submission-result" id="submissionResult" hidden>
+          <h2>Submission prepared</h2>
+          <p>Download the metadata file, then open GitHub to upload the files and submit your app.</p>
+          <div class="result-actions">
+            <button class="primary-button button-element" id="downloadJson" type="button">Download app JSON</button>
+            <button class="secondary-button button-element" id="copyJson" type="button">Copy JSON</button>
+            <a class="secondary-button" id="openGithub" href="#" target="_blank" rel="noopener">Open GitHub issue</a>
+          </div>
+          <pre id="jsonPreview"></pre>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer submit-footer">
+    <p>Review <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> before publishing.</p>
+  </footer>
+
+  <script src="js/submit.js" defer></script>
+</body>
+</html>
