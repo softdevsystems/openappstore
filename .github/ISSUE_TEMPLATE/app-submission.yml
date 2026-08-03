@@ -1,0 +1,66 @@
+name: App submission
+description: Submit an Android APK for review and listing.
+title: "[App Submission] "
+labels:
+  - app-submission
+body:
+  - type: input
+    id: app-name
+    attributes:
+      label: App name
+      placeholder: My Android App
+    validations:
+      required: true
+  - type: input
+    id: developer
+    attributes:
+      label: Developer
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 1.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Productivity
+        - Education
+        - Business
+        - Tools
+        - Games
+    validations:
+      required: true
+  - type: input
+    id: apk-url
+    attributes:
+      label: APK download URL
+      description: Use a GitHub Release asset URL whenever possible.
+    validations:
+      required: true
+  - type: input
+    id: icon-url
+    attributes:
+      label: App icon path or URL
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I own this app or have permission to distribute it.
+          required: true
+        - label: I confirm the APK does not contain malware or unauthorized copyrighted content.
+          required: true
